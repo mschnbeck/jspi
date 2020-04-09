@@ -346,6 +346,10 @@ public class IppPrintService implements PrintService {
 				(Set) getAllAttributes().get(IppAttributeName.ORIENTATION_REQUESTED_SUPPORTED.getCategory());
 		} else if (category.equals(IppAttributeName.MEDIA.getCategory())) {
 			supportedAttributes = (Set) getAllAttributes().get(IppAttributeName.MEDIA_SUPPORTED.getCategory());
+		} else if (category.equals(IppAttributeName.MEDIA_SOURCE_SUPPORTED.getCategory())) {
+			supportedAttributes = (Set) getAllAttributes().get(IppAttributeName.MEDIA_SOURCE_SUPPORTED.getCategory());
+		} else if (category.equals(IppAttributeName.MEDIA_TYPE_SUPPORTED.getCategory())) {
+			supportedAttributes = (Set) getAllAttributes().get(IppAttributeName.MEDIA_TYPE_SUPPORTED.getCategory());
 		} else if (category.equals(IppAttributeName.PRINTER_RESOLUTION)) {
 			//printer-resolution-supported attribute currently not implemented
 		} else if (category.equals(IppAttributeName.PRINT_QUALITY.getCategory())) {

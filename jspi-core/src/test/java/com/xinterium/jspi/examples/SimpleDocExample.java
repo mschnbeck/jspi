@@ -31,15 +31,21 @@ import javax.print.DocFlavor;
 import javax.print.PrintException;
 import javax.print.PrintService;
 import javax.print.SimpleDoc;
+import javax.print.attribute.Attribute;
 import javax.print.attribute.HashDocAttributeSet;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
+import javax.print.attribute.PrintServiceAttribute;
+import javax.print.attribute.PrintServiceAttributeSet;
 import javax.print.attribute.standard.Copies;
 import javax.print.attribute.standard.RequestingUserName;
 import javax.print.attribute.standard.Sides;
 
 import de.lohndirekt.print.IppPrintServiceLookup;
+import de.lohndirekt.print.attribute.IppAttributeName;
 import de.lohndirekt.print.attribute.auth.RequestingUserPassword;
+import de.lohndirekt.print.attribute.ipp.jobtempl.LdMediaTray;
+import de.lohndirekt.print.attribute.ipp.printerdesc.supported.MediaSupported;
 
 /**
  * @author sefftinge
@@ -78,7 +84,7 @@ public class SimpleDocExample {
             }
             // let the user choose a service
             while (true) {
-                int serviceToUse = Integer.valueOf(readStdIn()).intValue();
+                int serviceToUse = Integer.valueOf(readStdIn().trim()).intValue();
                 if (serviceToUse < 0 || serviceToUse >= services.length) {
                     System.out.println("Bitte eine Zahl zwischen 0 und "
                             + (services.length - 1) + " eingeben.");
@@ -96,6 +102,19 @@ public class SimpleDocExample {
                 System.out.print("Password : ");
                 password = readStdIn().trim();
             }
+            
+            System.out.println("-----------Supported Media Types-----------");
+            Attribute[] psas = (Attribute[]) service.getSupportedAttributeValues(IppAttributeName.MEDIA_TYPE_SUPPORTED.getCategory(), null, null);
+            for (Attribute a: psas) {
+            		System.out.println(a);
+            }
+            
+            System.out.println("-----------Supported Media Sources-----------");
+            psas = (Attribute[]) service.getSupportedAttributeValues(IppAttributeName.MEDIA_SOURCE_SUPPORTED.getCategory(), null, null);
+            for (Attribute a: psas) {
+            		System.out.println(a);
+            }
+            
 
             System.out.println("Printing on: " + service.getName());
             // create a job
@@ -113,6 +132,7 @@ public class SimpleDocExample {
                 attributes.add(usernameAttr);
                 attributes.add(userpassAttr);
             }
+            
             // we just want one copy
             Copies copies = new Copies(1);
             attributes.add(copies);
@@ -128,6 +148,8 @@ public class SimpleDocExample {
 			// attributes.add(media);
 
             // Now create a document
+            
+            attributes.add(new LdMediaTray("stationery-letterhead"));
             File testFile = new File(Messages.getString("pdfdocument.1"));
             InputStream stream = new FileInputStream(testFile);
             Doc doc = new SimpleDoc(stream, DocFlavor.INPUT_STREAM.PDF,
@@ -136,8 +158,8 @@ public class SimpleDocExample {
             // finally the print action
             try {
                 // we are setting the doc and the job attributes
-                job.print(doc, attributes);
-                System.out.println("printing successfull...");
+               job.print(doc, attributes);
+               System.out.println("printing successfull...");
             } catch (PrintException e) {
                 e.printStackTrace();
             }
