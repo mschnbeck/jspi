@@ -449,7 +449,12 @@ public final class AttributeParser {
 			values = new Object[] {
 			};
 		} else {
-			throw new IllegalArgumentException("\"" + Integer.toHexString(valueTag) + "\" is not a valid value-tag");
+			String word = parseString(in, valueLength);
+			if (log.isLoggable(Level.INFO)) {
+			    log.warning("Unknown valueTag: " + Integer.toHexString(valueTag));
+			}
+			values = new Object[] {};
+			//throw new IllegalArgumentException("\"" + Integer.toHexString(valueTag) + "\" is not a valid value-tag");
 		}
 		return values;
 	}

@@ -114,6 +114,7 @@ import de.lohndirekt.print.attribute.ipp.jobdesc.TimeAtCompleted;
 import de.lohndirekt.print.attribute.ipp.jobdesc.TimeAtCreation;
 import de.lohndirekt.print.attribute.ipp.jobdesc.TimeAtProcessing;
 import de.lohndirekt.print.attribute.ipp.jobtempl.LdJobHoldUntil;
+import de.lohndirekt.print.attribute.ipp.jobtempl.LdMediaTray;
 import de.lohndirekt.print.attribute.ipp.printerdesc.MultipleOperationTimeout;
 import de.lohndirekt.print.attribute.ipp.printerdesc.NaturalLanguageConfigured;
 import de.lohndirekt.print.attribute.ipp.printerdesc.PrinterCurrentTime;
@@ -140,7 +141,9 @@ import de.lohndirekt.print.attribute.ipp.printerdesc.supported.GeneratedNaturalL
 import de.lohndirekt.print.attribute.ipp.printerdesc.supported.IppVersionsSupported;
 import de.lohndirekt.print.attribute.ipp.printerdesc.supported.JobHoldUntilSupported;
 import de.lohndirekt.print.attribute.ipp.printerdesc.supported.JobSheetsSupported;
+import de.lohndirekt.print.attribute.ipp.printerdesc.supported.MediaSourceSupported;
 import de.lohndirekt.print.attribute.ipp.printerdesc.supported.MediaSupported;
+import de.lohndirekt.print.attribute.ipp.printerdesc.supported.MediaTypeSupported;
 import de.lohndirekt.print.attribute.ipp.printerdesc.supported.MultipleDocumentHandlingSupported;
 import de.lohndirekt.print.attribute.ipp.printerdesc.supported.MultipleDocumentJobsSupported;
 import de.lohndirekt.print.attribute.ipp.printerdesc.supported.OperationsSupported;
@@ -276,6 +279,8 @@ public final class IppAttributeName {
 		new IppAttributeName(new GeneratedNaturalLanguageSupported("x", Locale.getDefault()));
 	public static final IppAttributeName MEDIA_DEFAULT = new IppAttributeName(new MediaDefault("x", Locale.getDefault()));
 	public static final IppAttributeName MEDIA_SUPPORTED = new IppAttributeName(new MediaSupported("x", Locale.getDefault()));
+	public static final IppAttributeName MEDIA_SOURCE_SUPPORTED = new IppAttributeName(new MediaSourceSupported("x", Locale.getDefault()));
+	public static final IppAttributeName MEDIA_TYPE_SUPPORTED = new IppAttributeName(new MediaTypeSupported("x", Locale.getDefault()));
     public static final IppAttributeName MULTIPLE_DOCUMENT_HANDLING_DEFAULT =
         new IppAttributeName(new MultipleDocumentHandlingDefault("x", Locale.getDefault()));
     public static final IppAttributeName MULTIPLE_DOCUMENT_HANDLING_SUPPORTED =
@@ -311,6 +316,8 @@ public final class IppAttributeName {
 		new IppAttributeName(new UriAuthenticationSupported("x", Locale.getDefault()));
 	public static final IppAttributeName URI_SECURITY_SUPPORTED =
 		new IppAttributeName(new UriSecuritySupported("x", Locale.getDefault()));
+	public static final IppAttributeName UNKNOWN_ATTRIBUTE =
+			new IppAttributeName(new UnknownAttribute("x", Locale.getDefault()));
 	
 	
 	/*
@@ -417,6 +424,8 @@ public final class IppAttributeName {
 		put(IppAttributeName.MEDIA);
 		put(IppAttributeName.MEDIA_DEFAULT);
 		put(IppAttributeName.MEDIA_SUPPORTED);
+		put(IppAttributeName.MEDIA_SOURCE_SUPPORTED);
+		put(IppAttributeName.MEDIA_TYPE_SUPPORTED);
 		put(IppAttributeName.MEMBER_NAMES);
 		put(IppAttributeName.MEMBER_URIS);
 		put(IppAttributeName.MULTIPLE_DOCUMENT_HANDLING);
@@ -479,6 +488,7 @@ public final class IppAttributeName {
 		put(IppAttributeName.TIME_AT_PROCESSING);
 		put(IppAttributeName.URI_AUTHENTICATION_SUPPORTED);
 		put(IppAttributeName.URI_SECURITY_SUPPORTED);
+		put(IppAttributeName.UNKNOWN_ATTRIBUTE);
 	}
 
 	public static IppAttributeName get(String attributeName) {
