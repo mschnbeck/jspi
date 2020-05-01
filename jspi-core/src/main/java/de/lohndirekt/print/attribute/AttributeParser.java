@@ -109,7 +109,7 @@ public final class AttributeParser {
 				} catch (SecurityException e) {
 					log.log(Level.SEVERE, e.getMessage(), e);
 				} catch (NoSuchMethodException e) {
-					log.log(Level.SEVERE, e.getMessage(), e);
+					log.log(Level.FINE, e.getMessage(), e);
 				} catch (IllegalArgumentException e) {
 					log.log(Level.SEVERE, e.getMessage(), e);
 				} catch (InstantiationException e) {

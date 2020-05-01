@@ -494,7 +494,7 @@ public final class IppAttributeName {
 	public static IppAttributeName get(String attributeName) {
 		IppAttributeName attrib =(IppAttributeName)attributesByName.get(attributeName);
 		if (attrib == null) {
-			log.warning("Unknown Attribute " + attributeName + ".");
+			log.fine("Unknown Attribute " + attributeName + ".");
 			attrib = new IppAttributeName(new UnknownAttribute(attributeName, Locale.getDefault()));
 		}
 		return attrib;

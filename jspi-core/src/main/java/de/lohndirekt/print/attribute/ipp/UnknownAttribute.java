@@ -18,6 +18,8 @@
  */
 package de.lohndirekt.print.attribute.ipp;
 
+import java.net.URI;
+import java.util.Date;
 import java.util.Locale;
 
 import javax.print.attribute.SupportedValuesAttribute;
@@ -34,6 +36,14 @@ public class UnknownAttribute extends TextSyntax implements SupportedValuesAttri
 
 	public UnknownAttribute(int number) {
 		super(Integer.toString(number), Locale.getDefault());
+	}
+	
+	public UnknownAttribute(Date date) {
+		super(date.toString(), Locale.getDefault());
+	}
+	
+	public UnknownAttribute(URI uri) {
+		super(uri.toString(), Locale.getDefault());
 	}
 	
 	/**
